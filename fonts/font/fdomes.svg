@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2022 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fdomes" horiz-adv-x="1000" >
+<font-face font-family="fdomes" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="share-svgrepo-com" unicode="&#xe800;" d="M797 226c-66 0-124-35-158-87l-263 138c9 23 15 47 15 73s-6 50-15 73l263 138c34-52 92-87 158-87 104 0 188 85 188 188 0 104-84 188-188 188-103 0-188-84-188-188 0-26 6-50 15-72l-263-139c-33 52-92 87-158 87-104 0-188-84-188-188s84-188 188-188c66 0 125 35 158 87l263-138c-9-23-15-47-15-73 0-104 85-188 188-188 104 0 188 84 188 188 0 103-84 188-188 188z m0 592c86 0 156-70 156-156 0-85-70-155-156-155s-155 70-155 155c0 86 69 156 155 156z m-594-623c-86 0-156 69-156 155s70 156 156 156 155-70 155-156-69-155-155-155z m594-313c-86 0-155 70-155 156 0 86 69 155 155 155s156-69 156-155c0-86-70-156-156-156z" horiz-adv-x="1000" />
+
+<glyph glyph-name="chevron-up-svgrepo-com-(1)" unicode="&#xe805;" d="M783 213a31 31 0 0 1 0 45l-261 260a31 31 0 0 1-44 0l-260-260a31 31 0 1 1 44-45l238 239 238-239a31 31 0 0 1 45 0z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>
