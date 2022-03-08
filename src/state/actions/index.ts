@@ -1,13 +1,17 @@
 import { ActionType } from "../action-types";
-interface SearchDrinksAction{
-    type:ActionType.SEARCH_DRINKS
+import { FetchedDrink } from "../../utils/customTypes";
+interface SearchAction {
+  type: ActionType.SEARCH;
 }
-interface SearchDrinksSuccessAction{
-    type:ActionType.SEARCH_DRINKS_SUCCESS,
-    payload:string[],
+interface SearchSuccessAction {
+  type: ActionType.SEARCH_SUCCESS;
+  payload: FetchedDrink[];
 }
-interface SearchDrinksErrorAction{
-    type:ActionType.SEARCH_DRINKS_ERROR
-    payload:string,
+interface SearchErrorAction {
+  type: ActionType.SEARCH_ERROR;
+  payload: string;
 }
-export type Action = SearchDrinksAction | SearchDrinksErrorAction | SearchDrinksSuccessAction;
+export type Action =
+  | SearchAction
+  | SearchErrorAction
+  | SearchSuccessAction;

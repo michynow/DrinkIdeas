@@ -1,7 +1,12 @@
-import logo from "./logo.svg";
-
+import RegularSearch from "./views/RegularSearch";
+import SearchByIngredient from "./views/SearchByIngredient";
 function App() {
-  return <div>hi</div>;
+  return (
+    <>
+      {/* <RegularSearch /> */}
+      <SearchByIngredient />
+    </>
+  );
 }
 
 export default App;
