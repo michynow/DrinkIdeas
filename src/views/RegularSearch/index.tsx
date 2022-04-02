@@ -2,6 +2,13 @@ import { useState, useRef } from "react";
 import SearchResults from "../../components/SearchResults";
 import { useActions } from "../../hooks/useActions";
 import { SearchType } from "../../utils/searchTypes";
+import {
+  RegularSearchForm,
+  RegularSearchFormButton,
+  RegularSearchFormInput,
+  RegularSearchFormWrapper,
+  SearchResultsWrapper,
+} from "./RegularSearch.style";
 const RegularSearch: React.FC = () => {
   const [term, setTerm] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -17,13 +24,15 @@ const RegularSearch: React.FC = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <input ref={inputRef} />
-        <button>Search</button>
-      </form>
-      <SearchResults term={term} />
-    </div>
+    <RegularSearchFormWrapper>
+      <RegularSearchForm onSubmit={submitHandler}>
+        <RegularSearchFormInput ref={inputRef} />
+        <RegularSearchFormButton>Search</RegularSearchFormButton>
+      </RegularSearchForm>
+      <SearchResultsWrapper>
+        <SearchResults term={term} />
+      </SearchResultsWrapper>
+    </RegularSearchFormWrapper>
   );
 };
 export default RegularSearch;
