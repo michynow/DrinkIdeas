@@ -15,7 +15,6 @@ export const search = (
       const data = await fetch(url + searchType + term)
         .then((response) => response.json())
         .then((object) => object.drinks);
-      console.log(data);
       dispatch({
         type: ActionType.SEARCH_SUCCESS,
         payload: (typeof data !== "string" && data) || [],
@@ -24,6 +23,32 @@ export const search = (
       if (err instanceof Error) {
         dispatch({
           type: ActionType.SEARCH_ERROR,
+          payload: err.message,
+        });
+      }
+    }
+  };
+};
+export const fetchIngredients = (
+  searchType: SearchType = SearchType.INGREDIENTS_LIST
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.INGREDIENTS_FETCH,
+    });
+    try {
+      const ingredients = await fetch(url + searchType)
+        .then((response) => response.json())
+        .then((result) => result.drinks);
+
+      dispatch({
+        type: ActionType.INGREDIENTS_FETCH_SUCCESS,
+        payload: ingredients,
+      });
+    } catch (err) {
+      if (err instanceof Error) {
+        dispatch({
+          type: ActionType.INGREDIENTS_FETCH_ERROR,
           payload: err.message,
         });
       }

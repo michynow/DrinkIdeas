@@ -105,3 +105,6 @@ export type FeaturedDrink = {
   strCreativeCommonsConfirmed: nullString;
   dateModified: nullString;
 };
+export interface SingleIngredient {
+  strIngredient1: nullString;
+}

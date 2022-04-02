@@ -1,21 +1,20 @@
 import { FetchedDrink } from "../../utils/customTypes";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { SearchType } from "../../utils/searchTypes";
-import { Link } from "react-router-dom";
 import DrinkCard from "../DrinkCard";
 import { SearchResultsContainer } from "./SearchResults.style";
 import Loader from "../Loader";
+import { useMemo, useEffect } from "react";
+import useFetchData from "../../hooks/useFetchData";
 interface SearchResultsInterface {
-  term: string | string[];
+  term: string;
   searchType?: SearchType;
 }
 const SearchResults = ({
   term,
-  searchType,
+  searchType = SearchType.BY_NAME,
 }: SearchResultsInterface) => {
-  const { data, error, loading } = useTypedSelector(
-    (state) => state.drinks
-  );
+  const { data, error, loading } = useFetchData(term, searchType);
   return (
     <SearchResultsContainer>
       {error && <h3>{error}</h3>}
@@ -25,13 +24,10 @@ const SearchResults = ({
         data !== null &&
         term !== "" &&
         data.map((item: FetchedDrink, index: number) => {
-          const {
-            idDrink,
-            strDrink,
-            strDrinkThumb,
-            strInstructions,
-          } = item;
-          return <DrinkCard item={item} key={index} />;
+          if (item.strDrink && item.strDrinkThumb) {
+            return <DrinkCard item={item} key={index} />;
+          }
+          return null;
         })}
       {data !== null &&
         data.length === 0 &&
@@ -41,4 +37,5 @@ const SearchResults = ({
     </SearchResultsContainer>
   );
 };
+
 export default SearchResults;

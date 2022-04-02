@@ -5,8 +5,8 @@ function App() {
   return (
     <>
       <AppWrapper>
-        <RegularSearch />
-        {/* <SearchByIngredient /> */}
+        {/* <RegularSearch /> */}
+        <SearchByIngredient />
       </AppWrapper>
     </>
   );

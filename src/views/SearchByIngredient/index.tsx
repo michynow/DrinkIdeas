@@ -1,20 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchType } from "../../utils/searchTypes";
 import useFetchData from "../../hooks/useFetchData";
+import Loader from "../../components/Loader";
+import SearchResults from "../../components/SearchResults";
+import { IngredientSearchResults } from "./SearchByIngredient.style";
+import { FetchedDrink } from "../../utils/customTypes";
+import { fetchIngredients } from "../../state/action-creators";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import useFetchIngredients from "../../hooks/useFetchIngredients";
 const SearchByIngredient = () => {
-  const { loading, error, data } = useFetchData(
-    "",
-    SearchType.INGREDIENTS_LIST
+  useFetchIngredients();
+  const [searchTerm, setSearchTerm] = useState<string>("vodka");
+  const ingredientStore = useTypedSelector(
+    (state) => state.ingredients
   );
-  const [state, setState] = useState([]);
+  const { loading, error, ingredients } = ingredientStore;
+
   return (
     <>
-      <h1>Search by ingredients!</h1>
-      {data.length < 1 && !error && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {data.map(({ strIngredient1 }, index) => {
-        return <li key={index}>{strIngredient1}</li>;
-      })}
+      <section>
+        <h1>Find a drink, by selecting ingredients you have!</h1>
+      </section>
+      <IngredientSearchResults>
+        <form action="GET">
+          {ingredients.length < 1 && !error && loading && <Loader />}
+          {error && <p>{error}</p>}
+          {ingredients.map(({ strIngredient1 }, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type={"checkbox"}
+                  name={`ingredient-${strIngredient1}`}
+                  id={`ingredient-${strIngredient1}` || ""}
+                />
+                <label htmlFor={`ingredient-${strIngredient1}`}>
+                  {strIngredient1}
+                </label>
+              </div>
+            );
+          })}
+        </form>
+        {searchTerm !== "" && (
+          <SearchResults
+            term={searchTerm}
+            searchType={SearchType.BY_NAME}
+          />
+        )}
+      </IngredientSearchResults>
     </>
   );
 };
