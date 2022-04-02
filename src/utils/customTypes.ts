@@ -1,5 +1,5 @@
-type nullString = string | null;
-export type FetchedDrink = {
+export type nullString = string | null;
+export interface FetchedDrink extends Object {
   dateModified?: nullString;
   idDrink: string;
   strAlcoholic?: nullString;
@@ -51,7 +51,7 @@ export type FetchedDrink = {
   strMeasure15?: nullString;
   strTags?: nullString;
   strVideo?: nullString;
-};
+}
 export type FeaturedDrink = {
   idDrink: string;
   strDrink: string;

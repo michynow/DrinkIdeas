@@ -1,10 +1,13 @@
+import { AppWrapper } from "./styles/App.style";
 import RegularSearch from "./views/RegularSearch";
 import SearchByIngredient from "./views/SearchByIngredient";
 function App() {
   return (
     <>
-      {/* <RegularSearch /> */}
-      <SearchByIngredient />
+      <AppWrapper>
+        <RegularSearch />
+        {/* <SearchByIngredient /> */}
+      </AppWrapper>
     </>
   );
 }
