@@ -5,11 +5,13 @@ export interface IngredientsState {
   loading: boolean;
   error: string | null;
   ingredients: SingleIngredient[];
+  selectedIngredients: string[];
 }
 const initialState = {
   loading: false,
   error: null,
   ingredients: [],
+  selectedIngredients: [],
 };
 const ingredientsReducer = (
   state: IngredientsState = initialState,
@@ -18,21 +20,29 @@ const ingredientsReducer = (
   switch (action.type) {
     case ActionType.INGREDIENTS_FETCH:
       return {
+        ...state,
         loading: true,
         error: null,
         ingredients: [],
       };
     case ActionType.INGREDIENTS_FETCH_SUCCESS:
       return {
+        ...state,
         loading: false,
         error: null,
         ingredients: action.payload,
       };
     case ActionType.INGREDIENTS_FETCH_ERROR:
       return {
+        ...state,
         loading: false,
         error: action.payload,
         ingredients: [],
+      };
+    case ActionType.INGREDIENT_SELECT:
+      return {
+        ...state,
+        selectedIngredients: action.payload,
       };
     default:
       return state;

@@ -25,10 +25,15 @@ interface IngredientsFetchErrorAction {
   type: ActionType.INGREDIENTS_FETCH_ERROR;
   payload: string;
 }
+interface IngredientSelectAction {
+  type: ActionType.INGREDIENT_SELECT;
+  payload: string[];
+}
 export type Action =
   | SearchAction
   | SearchErrorAction
   | SearchSuccessAction
   | IngredientsFetch
   | IngredientsFetchErrorAction
-  | IngredientsFetchSuccessAction;
+  | IngredientsFetchSuccessAction
+  | IngredientSelectAction;

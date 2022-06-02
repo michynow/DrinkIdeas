@@ -29,6 +29,14 @@ export const search = (
     }
   };
 };
+export const selectIngredients = (ingredients: string[]) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.INGREDIENT_SELECT,
+      payload: ingredients,
+    });
+  };
+};
 export const fetchIngredients = (
   searchType: SearchType = SearchType.INGREDIENTS_LIST
 ) => {
