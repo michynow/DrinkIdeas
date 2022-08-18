@@ -19,6 +19,7 @@ export const LoaderContainer = styled.div`
   display: grid;
   place-items: center;
   width: 100%;
+  height: 100%;
 `;
 export const LoaderWrapper = styled.div`
   position: relative;

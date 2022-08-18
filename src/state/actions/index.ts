@@ -29,6 +29,10 @@ interface IngredientSelectAction {
   type: ActionType.INGREDIENT_SELECT;
   payload: string[];
 }
+interface IngredientSubmitSearchAction {
+  type: ActionType.INGREDIENT_SUBMIT_SEARCH;
+  payload: boolean;
+}
 export type Action =
   | SearchAction
   | SearchErrorAction
@@ -36,4 +40,5 @@ export type Action =
   | IngredientsFetch
   | IngredientsFetchErrorAction
   | IngredientsFetchSuccessAction
-  | IngredientSelectAction;
+  | IngredientSelectAction
+  | IngredientSubmitSearchAction;

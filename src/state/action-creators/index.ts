@@ -30,7 +30,7 @@ export const search = (
   };
 };
 export const selectIngredients = (ingredients: string[]) => {
-  return async (dispatch: Dispatch<Action>) => {
+  return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.INGREDIENT_SELECT,
       payload: ingredients,

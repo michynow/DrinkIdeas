@@ -1,10 +1,8 @@
 import { FetchedDrink } from "../../utils/customTypes";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { SearchType } from "../../utils/searchTypes";
 import DrinkCard from "../DrinkCard";
 import { SearchResultsContainer } from "./SearchResults.style";
 import Loader from "../Loader";
-import { useMemo, useEffect } from "react";
 import useFetchData from "../../hooks/useFetchData";
 interface SearchResultsInterface {
   term: string;

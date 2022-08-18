@@ -6,12 +6,14 @@ export interface IngredientsState {
   error: string | null;
   ingredients: SingleIngredient[];
   selectedIngredients: string[];
+  searchSubmitted: boolean;
 }
 const initialState = {
   loading: false,
   error: null,
   ingredients: [],
   selectedIngredients: [],
+  searchSubmitted: false,
 };
 const ingredientsReducer = (
   state: IngredientsState = initialState,
@@ -43,6 +45,11 @@ const ingredientsReducer = (
       return {
         ...state,
         selectedIngredients: action.payload,
+      };
+    case ActionType.INGREDIENT_SUBMIT_SEARCH:
+      return {
+        ...state,
+        searchSubmitted: action.payload,
       };
     default:
       return state;
