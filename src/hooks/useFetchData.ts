@@ -7,9 +7,6 @@ const useFetchData = (term: string, searchType: SearchType) => {
   useEffect(() => {
     search(term, searchType);
   }, []);
-  // const { data, error, loading } = useTypedSelector(
-  //   (state) => state.drinks
-  // );
   return useTypedSelector((state) => state.drinks);
 };
 export default useFetchData;

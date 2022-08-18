@@ -1,20 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchType } from "../../utils/searchTypes";
-import useFetchData from "../../hooks/useFetchData";
+import SearchResults from "../../components/SearchResults";
+import { IngredientSearchResults } from "./SearchByIngredient.style";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import useFetchIngredients from "../../hooks/useFetchIngredients";
+import IngredientSelectForm from "../../components/IngredientSelectForm";
+import SelectedIngredients from "../../components/SelectedIngredients";
 const SearchByIngredient = () => {
-  const { loading, error, data } = useFetchData(
-    "",
-    SearchType.INGREDIENTS_LIST
+  useFetchIngredients();
+  const ingredientStore = useTypedSelector(
+    (state) => state.ingredients
   );
-  const [state, setState] = useState([]);
+  const searchTerm: string =
+    ingredientStore.selectedIngredients.join(",");
+  const { loading, error, ingredients } = ingredientStore;
+  const drinksStore = useTypedSelector((state) => state.drinks);
+
   return (
     <>
-      <h1>Search by ingredients!</h1>
-      {data.length < 1 && !error && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {data.map(({ strIngredient1 }, index) => {
-        return <li key={index}>{strIngredient1}</li>;
-      })}
+      <section>
+        <h1>Find a drink, by selecting ingredients you have!</h1>
+      </section>
+      <SelectedIngredients />
+      <IngredientSearchResults>
+        <IngredientSelectForm />
+        {searchTerm !== "" &&
+          drinksStore.data.length > 0 &&
+          !loading && (
+            <SearchResults
+              term={searchTerm}
+              searchType={SearchType.BY_INGREDIENTS}
+            />
+          )}
+        {searchTerm !== "" &&
+          !drinksStore.data.length &&
+          !loading && <p>No results found</p>}
+      </IngredientSearchResults>
     </>
   );
 };
