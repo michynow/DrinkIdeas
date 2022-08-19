@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import SearchResults from "../../components/SearchResults";
 import { useActions } from "../../hooks/useActions";
 import { SearchType } from "../../utils/searchTypes";
@@ -13,6 +13,7 @@ const RegularSearch: React.FC = () => {
   const [term, setTerm] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const { search } = useActions();
+
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputRef.current?.value.length === 1) {
@@ -22,7 +23,13 @@ const RegularSearch: React.FC = () => {
     }
     setTerm(inputRef.current?.value!);
   };
-
+  const setSearchType = useMemo(() => {
+    if (term.length === 0) {
+      return SearchType.RANDOM_10;
+    } else {
+      return SearchType.BY_NAME;
+    }
+  }, [term]);
   return (
     <RegularSearchFormWrapper>
       <RegularSearchForm onSubmit={submitHandler}>
@@ -30,7 +37,7 @@ const RegularSearch: React.FC = () => {
         <RegularSearchFormButton>Search</RegularSearchFormButton>
       </RegularSearchForm>
       <SearchResultsWrapper>
-        <SearchResults term={term} />
+        <SearchResults term={term} searchType={setSearchType} />
       </SearchResultsWrapper>
     </RegularSearchFormWrapper>
   );

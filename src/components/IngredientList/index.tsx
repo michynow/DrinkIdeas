@@ -44,7 +44,7 @@ const IngredientList = () => {
         if (ingName) {
           return (
             <li key={i}>
-              {ingMeasure || ""} {ingName || ""}{" "}
+              {ingMeasure || ""} {ingName || ""}
             </li>
           );
         }

@@ -3,13 +3,14 @@ import Loader from "../Loader";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { StyledIngredientSelectForm } from "./IngredientSelectForm.style";
 import { useActions } from "../../hooks/useActions";
-import { SearchType } from "../../utils/searchTypes";
 
 interface IngredientSelectFormProps {
   children?: React.ReactNode;
+  setFormString: React.Dispatch<React.SetStateAction<string>>;
 }
 const IngredientSelectForm = ({
   children,
+  setFormString,
 }: IngredientSelectFormProps) => {
   const [searchTerm, setSearchTerm] = useState<string[]>([]);
   const ingredientStore = useTypedSelector(
@@ -29,8 +30,10 @@ const IngredientSelectForm = ({
       );
     }
   };
+
   const handleFormSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
+    setFormString(searchTerm.join(","));
   };
 
   useEffect(() => {
@@ -58,6 +61,7 @@ const IngredientSelectForm = ({
               checked={
                 searchTerm.includes(strIngredient1 as string) || false
               }
+              readOnly
             />
             <label htmlFor={`ingredient-${strIngredient1}`}>
               {strIngredient1}

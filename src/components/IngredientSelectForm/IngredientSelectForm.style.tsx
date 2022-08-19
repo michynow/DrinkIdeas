@@ -2,10 +2,12 @@ import styled from "styled-components";
 export const StyledIngredientSelectForm = styled.form.attrs(() => ({
   action: "GET",
 }))`
-  max-height: 90vh;
+  max-height: calc(100vh - 20px);
   height: 100%;
   overflow: auto;
-  position: relative;
+  position: sticky;
+  top: 0;
+  min-width: 25%;
   button {
     position: sticky;
     bottom: 0;
