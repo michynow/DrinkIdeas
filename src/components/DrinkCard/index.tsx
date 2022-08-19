@@ -14,7 +14,7 @@ const DrinkCard = ({ item }: DrinkCardInterface): JSX.Element => {
   return (
     <DrinkCardWrapper to={`/drinks/${strDrink}`} key={idDrink}>
       <DrinkName>{strDrink}</DrinkName>
-      <DrinkImage loading="lazy" src={strDrinkThumb} alt={strDrink} />
+      <DrinkImage src={strDrinkThumb} alt={strDrink} />
       <DrinkInstructions>{strInstructions}</DrinkInstructions>
     </DrinkCardWrapper>
   );

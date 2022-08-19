@@ -6,7 +6,7 @@ const useFetchData = (term: string, searchType: SearchType) => {
   const { search } = useActions();
   useEffect(() => {
     search(term, searchType);
-  }, []);
+  }, [term]);
   return useTypedSelector((state) => state.drinks);
 };
 export default useFetchData;

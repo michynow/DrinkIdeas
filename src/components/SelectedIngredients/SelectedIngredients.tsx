@@ -2,7 +2,9 @@ import styled from "styled-components";
 export const StyledSelectedIngredientWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  min-height: 2.5rem;
   span {
     background-color: dodgerblue;
     color: white;

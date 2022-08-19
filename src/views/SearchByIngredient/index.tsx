@@ -6,35 +6,42 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import useFetchIngredients from "../../hooks/useFetchIngredients";
 import IngredientSelectForm from "../../components/IngredientSelectForm";
 import SelectedIngredients from "../../components/SelectedIngredients";
+
 const SearchByIngredient = () => {
   useFetchIngredients();
+  const [randomSearch, setRandomSearch] = useState<Boolean>(false);
+  const [formString, setFormString] = useState<string>("");
   const ingredientStore = useTypedSelector(
     (state) => state.ingredients
   );
-  const searchTerm: string =
-    ingredientStore.selectedIngredients.join(",");
-  const { loading, error, ingredients } = ingredientStore;
-  const drinksStore = useTypedSelector((state) => state.drinks);
-
+  const { loading } = ingredientStore;
+  useEffect(() => {
+    if (!formString) {
+      setRandomSearch(true);
+      return;
+    }
+    setRandomSearch(false);
+  }, [formString]);
   return (
     <>
-      <section>
-        <h1>Find a drink, by selecting ingredients you have!</h1>
-      </section>
-      <SelectedIngredients />
       <IngredientSearchResults>
-        <IngredientSelectForm />
-        {searchTerm !== "" &&
-          drinksStore.data.length > 0 &&
-          !loading && (
+        <IngredientSelectForm setFormString={setFormString} />
+        <section>
+          <h1>Find a drink, by selecting ingredients you have!</h1>
+          <SelectedIngredients />
+          {randomSearch && (
             <SearchResults
-              term={searchTerm}
+              term=""
+              searchType={SearchType.RANDOM_10}
+            />
+          )}
+          {!randomSearch && !loading && (
+            <SearchResults
+              term={formString}
               searchType={SearchType.BY_INGREDIENTS}
             />
           )}
-        {searchTerm !== "" &&
-          !drinksStore.data.length &&
-          !loading && <p>No results found</p>}
+        </section>
       </IngredientSearchResults>
     </>
   );
